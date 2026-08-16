@@ -360,7 +360,6 @@ p:last-child { margin-bottom: 0; }
 .marquee-track {
   display: inline-flex;
   align-items: center;
-  gap: 40px;
   animation: marqueeScroll 32s linear infinite;
 }
 .marquee-strip:hover .marquee-track { animation-play-state: paused; }
@@ -368,6 +367,7 @@ p:last-child { margin-bottom: 0; }
   display: flex;
   align-items: center;
   gap: 12px;
+  margin-right: 40px;
   font-family: var(--font-display);
   font-size: 15px;
   font-weight: 800;
