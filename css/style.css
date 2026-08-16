@@ -377,7 +377,7 @@ p:last-child { margin-bottom: 0; }
    ============================================================ */
 .stats-row {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 32px;
   text-align: center;
 }
@@ -606,7 +606,6 @@ p:last-child { margin-bottom: 0; }
   .process-grid { grid-template-columns: repeat(2, 1fr); }
   .split-grid { grid-template-columns: 1fr; gap: 40px; }
   .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 40px 24px; }
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
 }
 @media (max-width: 640px) {
@@ -615,4 +614,5 @@ p:last-child { margin-bottom: 0; }
   .form-row { grid-template-columns: 1fr; }
   .hero-title { font-size: clamp(38px, 11vw, 60px); }
   .cta-section { padding: 90px 0; }
+  .stats-row { grid-template-columns: 1fr; gap: 32px; }
 }
