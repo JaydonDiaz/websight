@@ -11,9 +11,9 @@
   --surface-2: #1b1b1f;
   --border:    rgba(255,255,255,0.08);
   --border-hover: rgba(255,255,255,0.18);
-  --accent:    #22d3ee;
-  --accent-dark: #0891b2;
-  --accent-glow: rgba(34,211,238,0.25);
+  --accent:    #f97316;
+  --accent-dark: #c2410c;
+  --accent-glow: rgba(249,115,22,0.25);
   --text:      #f5f5f7;
   --text-rgb:  245,245,247;
   --muted:     #8c8c94;
@@ -115,12 +115,12 @@ p:last-child { margin-bottom: 0; }
 }
 .btn-primary {
   background: var(--accent);
-  color: #05181c;
+  color: #2a1200;
   border-color: var(--accent);
 }
 .btn-primary:hover {
-  background: #67e4fa;
-  border-color: #67e4fa;
+  background: #fdba74;
+  border-color: #fdba74;
   transform: translateY(-2px);
   box-shadow: 0 12px 32px var(--accent-glow);
 }
@@ -267,8 +267,8 @@ p:last-child { margin-bottom: 0; }
   content: '';
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 60% 50% at 80% 10%, rgba(34,211,238,0.14) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 10% 90%, rgba(34,211,238,0.08) 0%, transparent 60%);
+    radial-gradient(ellipse 60% 50% at 80% 10%, rgba(249,115,22,0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 10% 90%, rgba(249,115,22,0.08) 0%, transparent 60%);
   pointer-events: none;
 }
 .hero-grid-lines {
@@ -287,13 +287,13 @@ p:last-child { margin-bottom: 0; }
   gap: 8px;
   padding: 8px 16px;
   border-radius: 999px;
-  background: rgba(34,211,238,0.1);
-  border: 1px solid rgba(34,211,238,0.3);
+  background: rgba(249,115,22,0.1);
+  border: 1px solid rgba(249,115,22,0.3);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #67e4fa;
+  color: #fdba74;
   margin-bottom: 26px;
 }
 .hero-title {
@@ -366,10 +366,10 @@ p:last-child { margin-bottom: 0; }
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #05181c;
+  color: #2a1200;
   flex-shrink: 0;
 }
-.marquee-item .dot { width: 6px; height: 6px; border-radius: 50%; background: #05181c; flex-shrink: 0; }
+.marquee-item .dot { width: 6px; height: 6px; border-radius: 50%; background: #2a1200; flex-shrink: 0; }
 @keyframes marqueeScroll { from{transform:translateX(0);} to{transform:translateX(-50%);} }
 
 /* ============================================================
@@ -404,7 +404,7 @@ p:last-child { margin-bottom: 0; }
   transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
 }
 .work-card:hover {
-  border-color: rgba(34,211,238,0.4);
+  border-color: rgba(249,115,22,0.4);
   transform: translateY(-6px);
   box-shadow: 0 30px 60px rgba(0,0,0,0.5);
 }
@@ -429,7 +429,7 @@ p:last-child { margin-bottom: 0; }
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #05181c;
+  color: #2a1200;
   background: var(--accent);
   padding: 10px 18px;
   border-radius: 999px;
@@ -505,7 +505,7 @@ p:last-child { margin-bottom: 0; }
   content: '';
   position: absolute; top: -40%; right: -30%;
   width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(34,211,238,0.16) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(249,115,22,0.16) 0%, transparent 70%);
   pointer-events: none;
 }
 .about-panel-eyebrow { font-family: var(--font-display); font-size: 13px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; position: relative; }
@@ -532,9 +532,9 @@ p:last-child { margin-bottom: 0; }
   gap: 12px;
   padding: 18px 20px;
   border-radius: var(--radius);
-  background: rgba(34,211,238,0.08);
-  border: 1px solid rgba(34,211,238,0.28);
-  color: #67e4fa;
+  background: rgba(249,115,22,0.08);
+  border: 1px solid rgba(249,115,22,0.28);
+  color: #fdba74;
   font-size: 14px;
   font-weight: 600;
 }
@@ -548,7 +548,7 @@ p:last-child { margin-bottom: 0; }
 .contact-icon {
   width: 42px; height: 42px;
   border-radius: var(--radius);
-  background: rgba(34,211,238,0.1);
+  background: rgba(249,115,22,0.1);
   color: var(--accent);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
@@ -571,7 +571,7 @@ p:last-child { margin-bottom: 0; }
 .cta-section::before {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(34,211,238,0.16) 0%, transparent 65%);
+  background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(249,115,22,0.16) 0%, transparent 65%);
 }
 .cta-inner { position: relative; }
 .cta-title { font-size: clamp(38px, 6.5vw, 76px); font-weight: 800; text-transform: uppercase; line-height: 1; margin-bottom: 22px; color: #fff; }
