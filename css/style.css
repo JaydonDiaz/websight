@@ -28,6 +28,28 @@
   --font-text: "Inter", "Helvetica Neue", Arial, sans-serif;
 }
 
+/* ---- Light theme ----
+   --bg-dark, the gradients, and the nav/hero/marquee/cta/footer chrome stay
+   fixed across both themes on purpose — they're always-dark brand surfaces
+   (their own text is hardcoded to light values for the same reason). Only
+   the readable "page canvas" tokens swap. --accent is darkened for light
+   mode since the base orange doesn't have enough contrast as small text on
+   a light background. */
+html[data-theme="light"] {
+  --bg:        #faf9f8;
+  --bg-rgb:    250,249,248;
+  --surface:   #ffffff;
+  --surface-2: #f1f0ee;
+  --border:    rgba(0,0,0,0.09);
+  --border-hover: rgba(0,0,0,0.2);
+  --accent:    #c2410c;
+  --text:      #16151a;
+  --text-rgb:  22,21,26;
+  --muted:     #5c5b63;
+  --muted-2:   #83828a;
+}
+html { transition: background var(--transition); }
+
 /* ---- Reset ---- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -92,6 +114,16 @@ p:last-child { margin-bottom: 0; }
   margin-bottom: 16px;
 }
 .eyebrow::before { content: ''; width: 16px; height: 1.5px; background: var(--accent); }
+
+/* ".bg-dark"/".cta-section" bands are always-dark regardless of theme (like the
+   nav/hero/footer), so bare text sitting directly on them (not inside a
+   swappable surface card) is pinned here. :where() keeps this at zero added
+   specificity so cards nested inside (.process-card, etc, which have their
+   own swappable surface background) are untouched and keep swapping normally. */
+:where(.bg-dark) h1, :where(.bg-dark) h2, :where(.bg-dark) h3, :where(.bg-dark) h4 { color: #f5f5f7; }
+:where(.bg-dark) p, :where(.bg-dark) .section-sub { color: #8c8c94; }
+:where(.bg-dark) .eyebrow, :where(.cta-section) .eyebrow { color: #f97316; }
+:where(.bg-dark) .eyebrow::before, :where(.cta-section) .eyebrow::before { background: #f97316; }
 .section-title {
   font-size: clamp(32px, 5vw, 56px);
   font-weight: 800;
@@ -198,6 +230,44 @@ p:last-child { margin-bottom: 0; }
 .nav-link:hover { color: #fff; }
 .nav-link:hover::after { transform: scaleX(1); }
 .nav-cta { margin-left: 8px; flex-shrink: 0; }
+
+/* ---- Theme toggle ---- */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  margin-left: 6px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.16);
+  color: #f5f5f7;
+  transition: all var(--transition);
+}
+.theme-toggle:hover { border-color: #f97316; color: #f97316; }
+.theme-toggle .icon-moon { display: block; }
+.theme-toggle .icon-sun { display: none; }
+html[data-theme="light"] .theme-toggle .icon-moon { display: none; }
+html[data-theme="light"] .theme-toggle .icon-sun { display: block; }
+.theme-label-dark, .theme-label-light { display: none; }
+.theme-toggle-mobile {
+  width: 100%;
+  height: auto;
+  border-radius: 999px;
+  padding: 14px 20px;
+  gap: 10px;
+  margin: 14px 0 0;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.theme-toggle-mobile .theme-label-dark { display: inline; }
+html[data-theme="light"] .theme-toggle-mobile .theme-label-dark { display: none; }
+html[data-theme="light"] .theme-toggle-mobile .theme-label-light { display: inline; }
 .hamburger {
   display: none;
   flex-direction: column;
@@ -269,6 +339,7 @@ p:last-child { margin-bottom: 0; }
   align-items: center;
   padding: calc(var(--nav-h) + 40px) 0 80px;
   overflow: hidden;
+  background: var(--bg-dark);
 }
 .hero::before {
   content: '';
@@ -502,7 +573,7 @@ p:last-child { margin-bottom: 0; }
   align-items: flex-start;
   gap: 14px;
   font-size: 15px;
-  color: #f5f5f7;
+  color: var(--text);
   line-height: 1.6;
 }
 .split-list-item svg { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
@@ -522,7 +593,7 @@ p:last-child { margin-bottom: 0; }
   pointer-events: none;
 }
 .about-panel-eyebrow { font-family: var(--font-display); font-size: 13px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; position: relative; }
-.about-panel-quote { font-size: 22px; font-weight: 600; line-height: 1.45; color: #fff; position: relative; }
+.about-panel-quote { font-size: 22px; font-weight: 600; line-height: 1.45; color: var(--text); position: relative; }
 
 /* ============================================================
    FORMS
@@ -567,7 +638,7 @@ p:last-child { margin-bottom: 0; }
   flex-shrink: 0;
 }
 .contact-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-.contact-value { font-size: 15px; color: #f5f5f7; line-height: 1.55; }
+.contact-value { font-size: 15px; color: var(--text); line-height: 1.55; }
 .contact-value a { transition: color var(--transition); }
 .contact-value a:hover { color: var(--accent); }
 
