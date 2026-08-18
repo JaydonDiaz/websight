@@ -85,10 +85,9 @@ if (document.querySelector('.hero')) {
     tl.fromTo('.hero-tag', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7 }, 0.2)
       .fromTo('.hero-line-inner', { yPercent: 110 }, { yPercent: 0, duration: 0.9, stagger: 0.12 }, 0.4)
       .fromTo('.hero-sub', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.75 }, 0.9)
-      .fromTo('.hero-actions', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, 1.1)
-      .fromTo('.hero-scroll', { opacity: 0 }, { opacity: 1, duration: 0.8 }, 1.6);
+      .fromTo('.hero-actions', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, 1.1);
   } else {
-    gsap.set(['.hero-tag', '.hero-line-inner', '.hero-sub', '.hero-actions', '.hero-scroll'],
+    gsap.set(['.hero-tag', '.hero-line-inner', '.hero-sub', '.hero-actions'],
       { opacity: 1, y: 0, yPercent: 0 });
   }
 }
