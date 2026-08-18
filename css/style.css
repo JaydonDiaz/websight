@@ -29,12 +29,13 @@
 }
 
 /* ---- Light theme ----
-   --bg-dark, the gradients, and the nav/hero/marquee/cta/footer chrome stay
-   fixed across both themes on purpose — they're always-dark brand surfaces
-   (their own text is hardcoded to light values for the same reason). Only
-   the readable "page canvas" tokens swap. --accent is darkened for light
-   mode since the base orange doesn't have enough contrast as small text on
-   a light background. */
+   --bg-dark, the gradients, and the marquee/cta/footer chrome stay fixed
+   across both themes on purpose — they're always-dark brand surfaces (their
+   own text is hardcoded to light values for the same reason). The hero and
+   the nav bar's unscrolled state swap with the theme instead (nav.scrolled
+   keeps the fixed-dark treatment once it grows its own opaque background).
+   --accent is darkened for light mode since the base orange doesn't have
+   enough contrast as small text on a light background. */
 html[data-theme="light"] {
   --bg:        #faf9f8;
   --bg-rgb:    250,249,248;
@@ -165,11 +166,11 @@ p:last-child { margin-bottom: 0; }
 }
 .btn-outline {
   background: transparent;
-  color: #f5f5f7;
-  border-color: rgba(255,255,255,0.3);
+  color: var(--text);
+  border-color: rgba(var(--text-rgb),0.3);
 }
 .btn-outline:hover {
-  border-color: #fff;
+  border-color: var(--text);
   transform: translateY(-2px);
 }
 .btn-sm { padding: 11px 22px; font-size: 12px; }
@@ -198,7 +199,9 @@ p:last-child { margin-bottom: 0; }
   height: 100%;
   gap: 32px;
 }
-.nav-logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; font-family: var(--font-display); font-weight: 800; font-size: 19px; letter-spacing: -0.02em; color: #fff; }
+.nav-logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; font-family: var(--font-display); font-weight: 800; font-size: 19px; letter-spacing: -0.02em; color: var(--text); transition: color var(--transition); }
+.nav.scrolled .nav-logo,
+.nav:has(~ .mobile-menu.open) .nav-logo { color: #fff; }
 .nav-logo .mark { width: 28px; height: 28px; flex-shrink: 0; }
 .nav-links {
   display: flex;
@@ -209,7 +212,7 @@ p:last-child { margin-bottom: 0; }
 .nav-link {
   font-size: 12px;
   font-weight: 600;
-  color: rgba(245,245,247,0.7);
+  color: rgba(var(--text-rgb),0.7);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   transition: color var(--transition);
@@ -217,6 +220,7 @@ p:last-child { margin-bottom: 0; }
   white-space: nowrap;
   flex-shrink: 0;
 }
+.nav.scrolled .nav-link { color: rgba(245,245,247,0.7); }
 .nav-link::after {
   content: '';
   position: absolute;
@@ -227,7 +231,8 @@ p:last-child { margin-bottom: 0; }
   transform-origin: left;
   transition: transform var(--transition);
 }
-.nav-link:hover { color: #fff; }
+.nav-link:hover { color: var(--text); }
+.nav.scrolled .nav-link:hover { color: #fff; }
 .nav-link:hover::after { transform: scaleX(1); }
 .nav-cta { margin-left: 8px; flex-shrink: 0; }
 
@@ -242,9 +247,14 @@ p:last-child { margin-bottom: 0; }
   flex-shrink: 0;
   margin-left: 6px;
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.16);
-  color: #f5f5f7;
+  border: 1px solid rgba(var(--text-rgb),0.16);
+  color: var(--text);
   transition: all var(--transition);
+}
+.nav.scrolled .theme-toggle,
+.nav:has(~ .mobile-menu.open) .theme-toggle {
+  border-color: rgba(255,255,255,0.16);
+  color: #f5f5f7;
 }
 .theme-toggle:hover { border-color: #f97316; color: #f97316; }
 .theme-toggle .icon-moon { display: block; }
@@ -264,6 +274,9 @@ html[data-theme="light"] .theme-toggle .icon-sun { display: block; }
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  /* lives inside .mobile-menu, which is always-dark regardless of theme */
+  border-color: rgba(255,255,255,0.16);
+  color: #f5f5f7;
 }
 .theme-toggle-mobile .theme-label-dark { display: inline; }
 html[data-theme="light"] .theme-toggle-mobile .theme-label-dark { display: none; }
@@ -279,10 +292,13 @@ html[data-theme="light"] .theme-toggle-mobile .theme-label-light { display: inli
   display: block;
   width: 24px;
   height: 2px;
-  background: #fff;
+  background: var(--text);
   border-radius: 2px;
-  transition: transform var(--transition), opacity var(--transition);
+  transition: transform var(--transition), opacity var(--transition), background var(--transition);
 }
+.nav.scrolled .hamburger span,
+.hamburger.open span,
+.nav:has(~ .mobile-menu.open) .hamburger span { background: #fff; }
 .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
@@ -339,7 +355,8 @@ html[data-theme="light"] .theme-toggle-mobile .theme-label-light { display: inli
   align-items: center;
   padding: calc(var(--nav-h) + 40px) 0 80px;
   overflow: hidden;
-  background: var(--bg-dark);
+  background: var(--bg);
+  transition: background var(--transition);
 }
 .hero::before {
   content: '';
@@ -349,6 +366,11 @@ html[data-theme="light"] .theme-toggle-mobile .theme-label-light { display: inli
     radial-gradient(ellipse 50% 40% at 10% 90%, rgba(249,115,22,0.08) 0%, transparent 60%);
   pointer-events: none;
 }
+html[data-theme="light"] .hero::before {
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 10%, rgba(249,115,22,0.16) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 10% 90%, rgba(249,115,22,0.10) 0%, transparent 60%);
+}
 .hero-grid-lines {
   position: absolute; inset: 0;
   background-image:
@@ -357,6 +379,11 @@ html[data-theme="light"] .theme-toggle-mobile .theme-label-light { display: inli
   background-size: 64px 64px;
   mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 40%, transparent 90%);
   pointer-events: none;
+}
+html[data-theme="light"] .hero-grid-lines {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
 }
 .hero-content { position: relative; max-width: 880px; }
 .hero-tag {
@@ -371,7 +398,7 @@ html[data-theme="light"] .theme-toggle-mobile .theme-label-light { display: inli
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #fdba74;
+  color: var(--accent);
   margin-bottom: 26px;
 }
 .hero-title {
@@ -380,13 +407,13 @@ html[data-theme="light"] .theme-toggle-mobile .theme-label-light { display: inli
   text-transform: uppercase;
   line-height: 0.98;
   margin-bottom: 26px;
-  color: #fff;
+  color: var(--text);
 }
 .hero-line { display: block; overflow: hidden; }
 .hero-line-inner { display: block; }
 .hero-sub {
   font-size: 19px;
-  color: rgba(255,255,255,0.72);
+  color: rgba(var(--text-rgb),0.72);
   line-height: 1.7;
   margin-bottom: 40px;
   max-width: 580px;
@@ -408,7 +435,7 @@ html[data-theme="light"] .theme-toggle-mobile .theme-label-light { display: inli
   font-size: 10px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
+  color: rgba(var(--text-rgb),0.5);
 }
 .hero-scroll-line {
   width: 1px;
