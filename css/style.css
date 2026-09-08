@@ -322,7 +322,7 @@ html[data-theme="light"] .theme-toggle .icon-sun { display: block; }
 }
 .tree-file-icon--html { background: #f97316; }
 .tree-file-icon--js { background: #f7df1e; }
-.tree-file-icon--css { background: #38bdf8; }
+.tree-file-icon--sh { background: #38bdf8; }
 .tree-file-icon--md { background: #c8c8cc; }
 .tree-file-icon--json { background: #4ade80; }
 
