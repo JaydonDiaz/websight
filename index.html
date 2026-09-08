@@ -9,106 +9,142 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M2 16C2 16 8 6 16 6C24 6 30 16 30 16C30 16 24 26 16 26C8 26 2 16 2 16Z' stroke='%23f97316' stroke-width='2.5' fill='none'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23f97316'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- ===== NAV ===== -->
-  <nav id="nav" class="nav">
-    <div class="container nav-inner">
-      <a href="#top" class="nav-logo">
-        <svg class="mark" viewBox="0 0 32 32" fill="none"><path d="M2 16C2 16 8 6 16 6C24 6 30 16 30 16C30 16 24 26 16 26C8 26 2 16 2 16Z" stroke="#f97316" stroke-width="2.5"/><circle cx="16" cy="16" r="5" fill="#f97316"/></svg>
-        WebSight
-      </a>
-      <ul class="nav-links">
-        <li><a href="#work" class="nav-link">Work</a></li>
-        <li><a href="#process" class="nav-link">Process</a></li>
-        <li><a href="#about" class="nav-link">About</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
-      </ul>
-      <a href="#contact" class="btn btn-primary btn-sm nav-cta">Start a Project</a>
+  <!-- ===== TITLE BAR (replaces top navbar) ===== -->
+  <header class="titlebar" id="titlebar">
+    <button class="titlebar-menu-btn" id="sidebar-toggle" aria-label="Toggle file explorer" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="titlebar-dots" aria-hidden="true"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span></div>
+    <div class="titlebar-path"><span class="titlebar-file">index.html</span> <span class="titlebar-sep">—</span> WebSight</div>
+    <div class="titlebar-actions">
       <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode">
-        <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-        <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
       </button>
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+      <a href="#contact" class="btn btn-primary btn-sm titlebar-run"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> Run</a>
     </div>
-  </nav>
+  </header>
 
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-    <div class="mobile-menu-inner">
-      <ul>
-        <li><a href="#work" class="mobile-link">Work</a></li>
-        <li><a href="#process" class="mobile-link">Process</a></li>
-        <li><a href="#about" class="mobile-link">About</a></li>
-        <li><a href="#contact" class="mobile-link">Contact</a></li>
-      </ul>
-      <a href="#contact" class="btn btn-primary btn-full mobile-cta">Start a Project</a>
-      <button class="theme-toggle theme-toggle-mobile" id="theme-toggle-mobile" type="button" aria-label="Switch to light mode">
-        <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-        <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
-        <span class="theme-label-dark">Light Mode</span>
-        <span class="theme-label-light">Dark Mode</span>
-      </button>
+  <!-- ===== SIDEBAR (file explorer — replaces nav links) ===== -->
+  <aside class="sidebar" id="sidebar">
+    <a href="#top" class="sidebar-logo">
+      <svg class="mark" viewBox="0 0 32 32" fill="none"><path d="M2 16C2 16 8 6 16 6C24 6 30 16 30 16C30 16 24 26 16 26C8 26 2 16 2 16Z" stroke="#f97316" stroke-width="2.5"/><circle cx="16" cy="16" r="5" fill="#f97316"/></svg>
+      <span>WebSight</span>
+    </a>
+
+    <div class="sidebar-tree">
+      <div class="tree-folder"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg> websight/</div>
+      <a href="#top" class="tree-file" data-target="top">
+        <span class="tree-file-icon tree-file-icon--html">H</span> index.html
+      </a>
+      <a href="#work" class="tree-file" data-target="work">
+        <span class="tree-file-icon tree-file-icon--js">JS</span> work.html
+      </a>
+      <a href="#process" class="tree-file" data-target="process">
+        <span class="tree-file-icon tree-file-icon--css">C</span> process.html
+      </a>
+      <a href="#about" class="tree-file" data-target="about">
+        <span class="tree-file-icon tree-file-icon--md">M</span> about.html
+      </a>
+      <a href="#contact" class="tree-file" data-target="contact">
+        <span class="tree-file-icon tree-file-icon--json">J</span> contact.html
+      </a>
     </div>
-  </div>
 
-  <!-- ===== HERO ===== -->
+    <div class="sidebar-bottom">
+      <a href="#contact" class="btn btn-primary btn-full sidebar-cta">Start a Project</a>
+    </div>
+  </aside>
+
+  <!-- Mobile sidebar backdrop -->
+  <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+  <main class="main">
+
+  <!-- ===== HERO — rendered like an open code file ===== -->
   <section class="hero" id="top">
     <div class="hero-grid-lines"></div>
-    <div class="container hero-content">
-      <span class="hero-tag">Web Design &amp; Development</span>
-      <h1 class="hero-title">
-        <span class="hero-line"><span class="hero-line-inner">Websites Worth</span></span>
-        <span class="hero-line"><span class="hero-line-inner text-accent">A Second Look</span></span>
-      </h1>
-      <p class="hero-sub">WebSight designs and builds custom, animated websites for real businesses — gyms, restaurants, dance studios, ecommerce brands, and more. No templates. No page builders. No shortcuts.</p>
-      <div class="hero-actions">
-        <a href="#work" class="btn btn-primary btn-lg">View Our Work</a>
-        <a href="#contact" class="btn btn-outline btn-lg">Start a Project</a>
+    <div class="hero-content">
+
+      <div class="code-line code-line--comment" style="--ln:1;">
+        <span class="hero-tag">// Web Design &amp; Development</span>
       </div>
+
+      <div class="code-line" style="--ln:3;">
+        <h1 class="hero-title">
+          <span class="hero-line"><span class="hero-line-inner">Websites Worth</span></span>
+          <span class="hero-line"><span class="hero-line-inner text-accent">&ldquo;A Second Look&rdquo;</span></span>
+        </h1>
+      </div>
+
+      <div class="code-line code-line--comment" style="--ln:6;">
+        <p class="hero-sub">/* WebSight designs and builds custom, animated websites for real businesses — gyms, restaurants, dance studios, ecommerce brands, and more. No templates. No page builders. No shortcuts. */</p>
+      </div>
+
+      <div class="code-line" style="--ln:10;">
+        <div class="hero-actions">
+          <a href="#work" class="btn btn-primary btn-lg"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg> View Our Work</a>
+          <a href="#contact" class="btn btn-outline btn-lg">Start a Project</a>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <!-- ===== MARQUEE ===== -->
+  <!-- ===== MARQUEE — terminal-style tag output ===== -->
   <div class="marquee-strip">
     <div class="marquee-track">
-      <span class="marquee-item"><span class="dot"></span>Food &amp; Beverage</span>
-      <span class="marquee-item"><span class="dot"></span>Dance &amp; Arts</span>
-      <span class="marquee-item"><span class="dot"></span>Ecommerce</span>
-      <span class="marquee-item"><span class="dot"></span>Landscaping</span>
-      <span class="marquee-item"><span class="dot"></span>Combat Sports</span>
-      <span class="marquee-item"><span class="dot"></span>Security Systems</span>
-      <span class="marquee-item"><span class="dot"></span>Fitness</span>
-      <span class="marquee-item"><span class="dot"></span>Food &amp; Beverage</span>
-      <span class="marquee-item"><span class="dot"></span>Dance &amp; Arts</span>
-      <span class="marquee-item"><span class="dot"></span>Ecommerce</span>
-      <span class="marquee-item"><span class="dot"></span>Landscaping</span>
-      <span class="marquee-item"><span class="dot"></span>Combat Sports</span>
-      <span class="marquee-item"><span class="dot"></span>Security Systems</span>
-      <span class="marquee-item"><span class="dot"></span>Fitness</span>
+      <span class="marquee-item">Food &amp; Beverage</span>
+      <span class="marquee-item">Dance &amp; Arts</span>
+      <span class="marquee-item">Ecommerce</span>
+      <span class="marquee-item">Landscaping</span>
+      <span class="marquee-item">Combat Sports</span>
+      <span class="marquee-item">Security Systems</span>
+      <span class="marquee-item">Fitness</span>
+      <span class="marquee-item">Home Services</span>
+      <span class="marquee-item">Food &amp; Beverage</span>
+      <span class="marquee-item">Dance &amp; Arts</span>
+      <span class="marquee-item">Ecommerce</span>
+      <span class="marquee-item">Landscaping</span>
+      <span class="marquee-item">Combat Sports</span>
+      <span class="marquee-item">Security Systems</span>
+      <span class="marquee-item">Fitness</span>
+      <span class="marquee-item">Home Services</span>
     </div>
   </div>
 
-  <!-- ===== STATS ===== -->
+  <!-- ===== STATS — terminal output panel ===== -->
   <section class="section-padding" style="padding-bottom:0;">
     <div class="container">
-      <div class="stats-row reveal-up">
-        <div class="stat-card">
-          <div class="stat-number-wrap"><span class="stat-number" data-target="8">0</span></div>
-          <div class="stat-label">Projects Shipped</div>
+      <div class="terminal reveal-up">
+        <div class="terminal-titlebar">
+          <span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span>
+          <span class="terminal-titlebar-label">websight — stats — 80×6</span>
         </div>
-        <div class="stat-card">
-          <div class="stat-number-wrap"><span class="stat-number" data-target="8">0</span></div>
-          <div class="stat-label">Industries Served</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number-wrap"><span class="stat-number" data-target="100">0</span><span class="stat-suffix">%</span></div>
-          <div class="stat-label">Custom Built</div>
+        <div class="terminal-body">
+          <div class="terminal-prompt-line"><span class="terminal-prompt">$</span> websight --stats</div>
+          <div class="stats-row">
+            <div class="stat-card">
+              <span class="terminal-check">✓</span>
+              <span class="stat-key">projects_shipped</span>
+              <span class="stat-number-wrap"><span class="stat-number" data-target="8">0</span></span>
+            </div>
+            <div class="stat-card">
+              <span class="terminal-check">✓</span>
+              <span class="stat-key">industries_served</span>
+              <span class="stat-number-wrap"><span class="stat-number" data-target="8">0</span></span>
+            </div>
+            <div class="stat-card">
+              <span class="terminal-check">✓</span>
+              <span class="stat-key">custom_built</span>
+              <span class="stat-number-wrap"><span class="stat-number" data-target="100">0</span><span class="stat-suffix">%</span></span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -125,6 +161,7 @@
 
       <div class="work-grid">
         <div class="work-card">
+          <div class="browser-chrome"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span><span class="browser-url">jinya-ramen-jd.web.app</span></div>
           <div class="work-card-img-wrap">
             <img src="img/proj-jinya-ramen.jpg" alt="JINYA Ramen Bar website" loading="lazy">
             <div class="work-card-overlay"><span class="work-card-visit">View Live Site &rarr;</span></div>
@@ -138,6 +175,7 @@
         </div>
 
         <div class="work-card">
+          <div class="browser-chrome"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span><span class="browser-url">motiv-dance-jd.web.app</span></div>
           <div class="work-card-img-wrap">
             <img src="img/proj-motiv-dance.jpg" alt="Motiv Dance website" loading="lazy">
             <div class="work-card-overlay"><span class="work-card-visit">View Live Site &rarr;</span></div>
@@ -151,6 +189,7 @@
         </div>
 
         <div class="work-card">
+          <div class="browser-chrome"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span><span class="browser-url">cityscape-jd.web.app</span></div>
           <div class="work-card-img-wrap">
             <img src="img/proj-cityscape.jpg" alt="Cityscape website" loading="lazy">
             <div class="work-card-overlay"><span class="work-card-visit">View Live Site &rarr;</span></div>
@@ -164,6 +203,7 @@
         </div>
 
         <div class="work-card">
+          <div class="browser-chrome"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span><span class="browser-url">combo-breaker-jd.web.app</span></div>
           <div class="work-card-img-wrap">
             <img src="img/proj-combo-breaker.jpg" alt="Combo Breaker website" loading="lazy">
             <div class="work-card-overlay"><span class="work-card-visit">View Live Site &rarr;</span></div>
@@ -177,6 +217,7 @@
         </div>
 
         <div class="work-card">
+          <div class="browser-chrome"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span><span class="browser-url">shop4it-jd.web.app</span></div>
           <div class="work-card-img-wrap">
             <img src="img/proj-shop4it.jpg" alt="Shop4It website" loading="lazy">
             <div class="work-card-overlay"><span class="work-card-visit">View Live Site &rarr;</span></div>
@@ -190,6 +231,7 @@
         </div>
 
         <div class="work-card">
+          <div class="browser-chrome"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span><span class="browser-url">spartan-integration-jd.web.app</span></div>
           <div class="work-card-img-wrap">
             <img src="img/proj-spartan-integration.jpg" alt="Spartan Integration & Consulting website" loading="lazy">
             <div class="work-card-overlay"><span class="work-card-visit">View Live Site &rarr;</span></div>
@@ -203,6 +245,7 @@
         </div>
 
         <div class="work-card">
+          <div class="browser-chrome"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span><span class="browser-url">ironclad-boxing-jd.web.app</span></div>
           <div class="work-card-img-wrap">
             <img src="img/proj-ironclad.jpg" alt="Ironclad Boxing Club website" loading="lazy">
             <div class="work-card-overlay"><span class="work-card-visit">View Live Site &rarr;</span></div>
@@ -216,6 +259,7 @@
         </div>
 
         <div class="work-card">
+          <div class="browser-chrome"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span><span class="browser-url">anchor-trade-jd.web.app</span></div>
           <div class="work-card-img-wrap">
             <img src="img/proj-anchor-trade.jpg" alt="Anchor Trade Co. website" loading="lazy">
             <div class="work-card-overlay"><span class="work-card-visit">View Live Site &rarr;</span></div>
@@ -231,7 +275,7 @@
     </div>
   </section>
 
-  <!-- ===== PROCESS ===== -->
+  <!-- ===== PROCESS — build pipeline ===== -->
   <section class="section-padding bg-dark" id="process">
     <div class="container">
       <div class="section-header reveal-up">
@@ -239,51 +283,60 @@
         <h2 class="section-title">From Idea <span class="text-accent">to Launch</span></h2>
         <p class="section-sub">A straightforward process, from first conversation to a site that's actually live.</p>
       </div>
-      <div class="process-grid">
-        <div class="process-card">
-          <div class="process-num">01</div>
-          <div class="process-name">Discover</div>
-          <p class="process-desc">We start with your business — who you serve, what makes you different, and what the site actually needs to do.</p>
-        </div>
-        <div class="process-card">
-          <div class="process-num">02</div>
-          <div class="process-name">Design</div>
-          <p class="process-desc">A visual direction built around your brand, not a template — colors, type, and layout chosen with intent.</p>
-        </div>
-        <div class="process-card">
-          <div class="process-num">03</div>
-          <div class="process-name">Build</div>
-          <p class="process-desc">Hand-coded, fast-loading pages with smooth GSAP animation — no bloated page-builder overhead.</p>
-        </div>
-        <div class="process-card">
-          <div class="process-num">04</div>
-          <div class="process-name">Launch</div>
-          <p class="process-desc">Deployed, tested across devices, and handed off — with support if you need changes down the line.</p>
+      <div class="pipeline">
+        <div class="pipeline-track" aria-hidden="true"></div>
+        <div class="process-grid">
+          <div class="process-card">
+            <div class="process-node">01</div>
+            <div class="process-cmd">$ run discover</div>
+            <div class="process-name">Discover</div>
+            <p class="process-desc">We start with your business — who you serve, what makes you different, and what the site actually needs to do.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-node">02</div>
+            <div class="process-cmd">$ run design</div>
+            <div class="process-name">Design</div>
+            <p class="process-desc">A visual direction built around your brand, not a template — colors, type, and layout chosen with intent.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-node">03</div>
+            <div class="process-cmd">$ run build</div>
+            <div class="process-name">Build</div>
+            <p class="process-desc">Hand-coded, fast-loading pages with smooth GSAP animation — no bloated page-builder overhead.</p>
+          </div>
+          <div class="process-card">
+            <div class="process-node">04</div>
+            <div class="process-cmd">$ run launch</div>
+            <div class="process-name">Launch</div>
+            <p class="process-desc">Deployed, tested across devices, and handed off — with support if you need changes down the line.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== ABOUT ===== -->
+  <!-- ===== ABOUT — rendered README ===== -->
   <section class="section-padding" id="about">
     <div class="container">
       <div class="split-grid">
         <div class="reveal-left">
+          <div class="md-heading-tag">##</div>
           <span class="eyebrow">Why WebSight</span>
           <h2 class="section-title" style="margin-bottom:20px;">Built By Hand, <span class="text-accent">Not By Template</span></h2>
           <p class="lead">Every site in the WebSight portfolio is coded from scratch — no drag-and-drop builders, no recycled themes.</p>
           <p>That means faster load times, animation that actually feels intentional, and a site that looks like nobody else's in your industry.</p>
           <div class="split-list">
-            <div class="split-list-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Hand-coded HTML, CSS &amp; JavaScript — no bloated frameworks</div>
-            <div class="split-list-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> GSAP-powered scroll animation, tuned for performance</div>
-            <div class="split-list-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Designed around your brand and your industry, not a template</div>
-            <div class="split-list-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Built to work everywhere — desktop, tablet, and mobile</div>
+            <div class="split-list-item"><span class="md-checkbox">[x]</span> Hand-coded HTML, CSS &amp; JavaScript — no bloated frameworks</div>
+            <div class="split-list-item"><span class="md-checkbox">[x]</span> GSAP-powered scroll animation, tuned for performance</div>
+            <div class="split-list-item"><span class="md-checkbox">[x]</span> Designed around your brand and your industry, not a template</div>
+            <div class="split-list-item"><span class="md-checkbox">[x]</span> Built to work everywhere — desktop, tablet, and mobile</div>
           </div>
         </div>
         <div class="reveal-right">
           <div class="about-panel">
+            <div class="about-panel-filetab">// note.txt</div>
             <div class="about-panel-eyebrow">The Short Version</div>
-            <p class="about-panel-quote">"If your website looks like everyone else's in your industry, it's not doing its job. WebSight builds sites people actually remember."</p>
+            <p class="about-panel-quote">&ldquo;If your website looks like everyone else's in your industry, it's not doing its job. WebSight builds sites people actually remember.&rdquo;</p>
           </div>
         </div>
       </div>
@@ -294,6 +347,7 @@
   <section class="cta-section">
     <div class="container">
       <div class="cta-inner">
+        <div class="cta-prompt reveal-up">$ start_project<span class="cta-cursor">&nbsp;</span></div>
         <span class="eyebrow reveal-up" style="justify-content:center;">Ready When You Are</span>
         <h2 class="cta-title reveal-up">Let's Build <span class="text-accent">Something Worth Seeing</span></h2>
         <p class="cta-sub reveal-up">Tell us about your business and what you're looking for — we'll take it from there.</p>
@@ -332,6 +386,7 @@
 
         <div class="reveal-right">
           <div class="form-wrap">
+            <div class="form-filetab"><span class="dot dot-red"></span><span class="dot dot-yellow"></span><span class="dot dot-green"></span><span class="form-filetab-label">contact.json</span></div>
             <div class="form-title">Project Inquiry</div>
             <p class="form-note">Fill this out and we'll get back to you shortly.</p>
             <form id="contact-form" novalidate>
@@ -397,7 +452,7 @@
           <p class="footer-tagline">Custom, animated websites for real businesses. No templates, no shortcuts — just sites worth seeing.</p>
         </div>
         <div>
-          <div class="footer-heading">Navigate</div>
+          <div class="footer-heading">// Navigate</div>
           <div class="footer-links">
             <a href="#work">Work</a>
             <a href="#process">Process</a>
@@ -406,7 +461,7 @@
           </div>
         </div>
         <div>
-          <div class="footer-heading">Get In Touch</div>
+          <div class="footer-heading">// Get In Touch</div>
           <div class="footer-links">
             <a href="mailto:jaydondiaz0303@gmail.com">jaydondiaz0303@gmail.com</a>
             <a href="https://github.com/JaydonDiaz" target="_blank" rel="noopener">GitHub</a>
@@ -419,6 +474,8 @@
       </div>
     </div>
   </footer>
+
+  </main>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>

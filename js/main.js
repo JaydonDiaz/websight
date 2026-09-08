@@ -8,26 +8,16 @@ gsap.registerPlugin(ScrollTrigger);
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ============================================================
-   NAV — scroll-aware background
+   ACTIVE FILE ROW on scroll (in-page sections only)
    ============================================================ */
-const nav = document.getElementById('nav');
-if (nav) {
-  ScrollTrigger.create({
-    start: 'top -60',
-    onEnter: () => nav.classList.add('scrolled'),
-    onLeaveBack: () => nav.classList.remove('scrolled'),
-  });
-}
-
-/* Active nav link on scroll (in-page sections only) */
 const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-link, .mobile-link');
+const treeFiles = document.querySelectorAll('.tree-file');
 if (sections.length) {
   const navObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const id = entry.target.getAttribute('id');
-        navLinks.forEach(link => {
+        treeFiles.forEach(link => {
           link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
         });
       }
@@ -37,27 +27,30 @@ if (sections.length) {
 }
 
 /* ============================================================
-   MOBILE MENU
+   SIDEBAR (mobile slide-in file explorer)
    ============================================================ */
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobile-menu');
-if (hamburger && mobileMenu) {
-  hamburger.addEventListener('click', () => {
-    const isOpen = !mobileMenu.classList.contains('open');
-    mobileMenu.classList.toggle('open', isOpen);
-    hamburger.classList.toggle('open', isOpen);
-    hamburger.setAttribute('aria-expanded', isOpen);
-    mobileMenu.setAttribute('aria-hidden', !isOpen);
+const sidebarToggle = document.getElementById('sidebar-toggle');
+const sidebar = document.getElementById('sidebar');
+const sidebarBackdrop = document.getElementById('sidebar-backdrop');
+function closeSidebar() {
+  sidebar.classList.remove('open');
+  sidebarBackdrop.classList.remove('open');
+  sidebarToggle.classList.remove('open');
+  sidebarToggle.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+if (sidebarToggle && sidebar && sidebarBackdrop) {
+  sidebarToggle.addEventListener('click', () => {
+    const isOpen = !sidebar.classList.contains('open');
+    sidebar.classList.toggle('open', isOpen);
+    sidebarBackdrop.classList.toggle('open', isOpen);
+    sidebarToggle.classList.toggle('open', isOpen);
+    sidebarToggle.setAttribute('aria-expanded', isOpen);
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
-  document.querySelectorAll('.mobile-link, .mobile-cta').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('open');
-      hamburger.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
-      mobileMenu.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    });
+  sidebarBackdrop.addEventListener('click', closeSidebar);
+  document.querySelectorAll('.tree-file, .sidebar-cta').forEach(link => {
+    link.addEventListener('click', closeSidebar);
   });
 }
 
@@ -71,7 +64,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     const target = document.querySelector(targetId);
     if (!target) return;
     e.preventDefault();
-    const top = target.getBoundingClientRect().top + window.scrollY - 76;
+    const top = target.getBoundingClientRect().top + window.scrollY - 64;
     window.scrollTo({ top, behavior: 'smooth' });
   });
 });
