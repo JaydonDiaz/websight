@@ -623,7 +623,7 @@ html[data-theme="light"] .hero-grid-lines {
 .work-card-desc { font-size: 14px; color: var(--muted); line-height: 1.65; margin-bottom: 0; }
 .work-card-link-full { position: absolute; inset: 0; z-index: 2; }
 
-.work-show-all { display: flex; justify-content: center; margin-top: 44px; }
+.work-show-all { display: flex; justify-content: center; margin-top: 84px; }
 #work-toggle { display: inline-flex; align-items: center; gap: 9px; }
 #work-toggle-icon { transition: transform .3s; }
 #work-toggle[aria-expanded="true"] #work-toggle-icon { transform: rotate(180deg); }
