@@ -262,3 +262,37 @@ wireForm('contact-form', 'form-success', ['ct-name', 'ct-email']);
 
   applyTheme(currentTheme());
 })();
+
+/* ============================================================
+   WORK GRID — show more / show less toggle
+   ============================================================ */
+(function () {
+  const toggleBtn = document.getElementById('work-toggle');
+  if (!toggleBtn) return;
+
+  const toggleLabel = document.getElementById('work-toggle-label');
+  const moreCards = document.querySelectorAll('.work-card--more');
+  let expanded = false;
+
+  toggleBtn.addEventListener('click', () => {
+    expanded = !expanded;
+    toggleBtn.setAttribute('aria-expanded', String(expanded));
+
+    if (expanded) {
+      moreCards.forEach((card) => { card.hidden = false; });
+      toggleLabel.textContent = 'Show Less';
+      if (prefersReducedMotion) {
+        gsap.set(moreCards, { opacity: 1, y: 0 });
+      } else {
+        gsap.fromTo(moreCards,
+          { opacity: 0, y: 28 },
+          { opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: 'power3.out' }
+        );
+      }
+    } else {
+      toggleLabel.textContent = 'Show 4 More Sites';
+      moreCards.forEach((card) => { card.hidden = true; });
+      toggleBtn.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
+  });
+})();
