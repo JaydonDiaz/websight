@@ -256,7 +256,11 @@ wireForm('contact-form', 'form-success', ['ct-name', 'ct-email']);
     btn.addEventListener('click', function () {
       var next = currentTheme() === 'light' ? 'dark' : 'light';
       try { localStorage.setItem(STORAGE_KEY, next); } catch (e) {}
-      applyTheme(next);
+      if (!prefersReducedMotion && document.startViewTransition) {
+        document.startViewTransition(function () { applyTheme(next); });
+      } else {
+        applyTheme(next);
+      }
     });
   });
 

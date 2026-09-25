@@ -64,6 +64,20 @@ html[data-theme="light"] {
 }
 html { transition: background var(--transition); }
 
+/* ---- Theme toggle crossfade (View Transitions API, see js/main.js) ----
+   Swapping data-theme changes dozens of CSS custom properties at once;
+   rather than add background/color/border-color transitions to every
+   element (and fight the more-specific transition rules already on
+   buttons/cards), the toggle wraps the swap in document.startViewTransition
+   so the whole page crossfades as one screenshot-to-screenshot animation.
+   This just tunes that crossfade's timing to match the site's own
+   --transition easing instead of the browser's 0.25s linear default. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.45s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 /* ---- Reset ---- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
