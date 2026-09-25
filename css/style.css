@@ -35,14 +35,19 @@
 }
 
 /* ---- Light theme ----
-   --bg-dark, the gradients, and the marquee/cta/footer/titlebar/sidebar
-   chrome stay fixed across both themes on purpose — they're always-dark
-   brand surfaces (their own text is hardcoded to light values for the
-   same reason). --accent is darkened for light mode since the base
-   orange doesn't have enough contrast as small text on a light bg. */
+   --bg-dark, the marquee/cta/footer/titlebar/sidebar chrome, stay
+   dark-with-light-text across both themes on purpose — they're
+   always-dark brand surfaces (their own text is hardcoded to light
+   values for the same reason). --bg-dark itself DOES shift to a warm
+   brown in light mode though (see --bg-dark below), since pure #000
+   left those bands — including the titlebar/sidebar, visible on every
+   page — pixel-identical regardless of the toggle. --accent is
+   darkened for light mode since the base orange doesn't have enough
+   contrast as small text on a light bg. */
 html[data-theme="light"] {
   --bg:        #faf9f8;
   --bg-rgb:    250,249,248;
+  --bg-dark:   #241a14;
   --surface:   #ffffff;
   --surface-2: #f1f0ee;
   --border:    rgba(0,0,0,0.09);
@@ -200,7 +205,7 @@ p:last-child { margin-bottom: 0; }
   align-items: center;
   gap: 16px;
   padding: 0 18px;
-  background: #0a0a0c;
+  background: var(--bg-dark);
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .titlebar-menu-btn {
@@ -259,7 +264,7 @@ html[data-theme="light"] .theme-toggle .icon-sun { display: block; }
   width: var(--sidebar-w);
   display: flex;
   flex-direction: column;
-  background: #0a0a0c;
+  background: var(--bg-dark);
   border-right: 1px solid rgba(255,255,255,0.08);
   padding: 22px 0 18px;
   overflow-y: auto;
@@ -454,7 +459,7 @@ html[data-theme="light"] .hero-grid-lines {
    ============================================================ */
 .marquee-strip {
   position: relative;
-  background: #0a0a0c;
+  background: var(--bg-dark);
   border-top: 1px solid rgba(255,255,255,0.08);
   border-bottom: 1px solid rgba(255,255,255,0.08);
   padding: 14px 0;
