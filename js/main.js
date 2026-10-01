@@ -276,6 +276,7 @@ wireForm('contact-form', 'form-success', ['ct-name', 'ct-email']);
 
   const toggleLabel = document.getElementById('work-toggle-label');
   const moreCards = document.querySelectorAll('.work-card--more');
+  const collapsedLabel = `Show ${moreCards.length} More Sites`;
   let expanded = false;
 
   toggleBtn.addEventListener('click', () => {
@@ -294,7 +295,7 @@ wireForm('contact-form', 'form-success', ['ct-name', 'ct-email']);
         );
       }
     } else {
-      toggleLabel.textContent = 'Show 4 More Sites';
+      toggleLabel.textContent = collapsedLabel;
       moreCards.forEach((card) => { card.hidden = true; });
       toggleBtn.scrollIntoView({ block: 'center', behavior: 'smooth' });
     }
